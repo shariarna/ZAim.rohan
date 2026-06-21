@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title data-translate="page_title">Md Rayhan Uddin - Full-Stack Developer & Android App Creator</title>
+  
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <!-- Background Decorative Blobs -->
+  <div class="bg-blob blob-purple"></div>
+  <div class="bg-blob blob-blue"></div>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        Rayhan<span class="logo-dot"></span>
+      </a>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link" data-translate="nav_home">Home</a></li>
+        <li><a href="#services" class="nav-link" data-translate="nav_services">Services</a></li>
+        <li><a href="#skills" class="nav-link" data-translate="nav_skills">Skills</a></li>
+        <li><a href="#portfolio" class="nav-link" data-translate="nav_portfolio">Projects</a></li>
+        <li><a href="#estimator" class="nav-link" data-translate="nav_estimator">Estimator</a></li>
+        <li><a href="#experience" class="nav-link" data-translate="nav_experience">Experience</a></li>
+        <li><a href="#contact" class="nav-link" data-translate="nav_contact">Contact</a></li>
+        <li><a href="blog.html" class="nav-link" data-translate="nav_blog">Blog</a></li>
+        <li><a href="about.html" class="nav-link" data-translate="nav_about">About</a></li>
+      </ul>
+      
+      <div class="nav-right">
+        <select id="languageSelect" class="language-select">
+          <option value="en">🇬🇧 English</option>
+          <option value="bd">🇧🇩 বাংলা</option>
+        </select>
+        
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <i class="bi bi-sun-fill"></i>
+        </button>
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content reveal active">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span data-translate="hero_badge_text">Available for Freelance &amp; Remote Work</span>
+        </div>
+        
+        <h1 class="hero-title">
+          <span data-translate="hero_greetings">Hi, I'm</span> 
+          <span class="text-gradient-primary">Md Rayhan Uddin</span><br>
+          <span style="font-size: 0.75em;" data-translate="hero_role">Android &amp; Full-Stack Developer</span>
+        </h1>
+        
+        <p class="hero-subtitle" data-translate="hero_desc">
+          Building high-performance Android applications and responsive web dashboards.
+        </p>
+        
+        <div class="hero-btns">
+          <a href="#portfolio" class="btn-main btn-primary-gradient">
+            <span data-translate="btn_work">View Portfolio</span> <i class="bi bi-arrow-right"></i>
+          </a>
+          <a href="#contact" class="btn-main btn-outline">
+            <span data-translate="btn_contact">Get In Touch</span> <i class="bi bi-chat-dots-fill"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-showcase reveal active">
+        <!-- Floating Skill Badges -->
+        <div class="hero-floating-badge badge-1">
+          <i class="bi bi-phone-fill"></i>
+          <div>
+            <div class="hfb-label">Mobile Dev</div>
+            <div class="hfb-value">Android SDK</div>
+          </div>
+        </div>
+        <div class="hero-floating-badge badge-2">
+          <i class="bi bi-globe"></i>
+          <div>
+            <div class="hfb-label">Web Dev</div>
+            <div class="hfb-value">Full-Stack</div>
+          </div>
+        </div>
+        <div class="hero-floating-badge badge-3">
+          <i class="bi bi-camera-fill"></i>
+          <div>
+            <div class="hfb-label">Creative</div>
+            <div class="hfb-value">Photography</div>
+          </div>
+        </div>
+
+        <div class="glass-panel showcase-card">
+          <!-- Customized Profile Photo Header -->
+          <div style="display: flex; align-items: center; gap: 1.25rem; margin-bottom: 2rem;">
+            <div style="width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 2.5px solid var(--primary-color); box-shadow: 0 0 15px var(--glow-primary); background: #111827;">
+              <img id="heroAvatarImg" src="profile.jpg" alt="Md Rayhan Uddin" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div>
+              <div class="showcase-name">Md Rayhan Uddin</div>
+              <div class="showcase-title" data-translate="card_profession">Full-Stack &amp; Creative Professional</div>
+            </div>
+          </div>
+          
+          <div class="showcase-stats">
+            <div class="stat-item">
+              <div class="stat-value">60+</div>
+              <div class="stat-label" data-translate="stat_completed">Completed Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">100%</div>
+              <div class="stat-label" data-translate="stat_satisfaction">Quality Work</div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="background: rgba(255,255,255,0.06); padding: 0.3rem 0.7rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600;">Android SDK</span>
+            <span style="background: rgba(255,255,255,0.06); padding: 0.3rem 0.7rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600;">Websites</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-translate="services_subtitle">My Expertise</span>
+        <h2 class="section-title" data-translate="services_title">Services I Offer</h2>
+        <p class="section-desc" data-translate="services_desc">I offer comprehensive technical solutions, ranging from app coding to custom dashboard development.</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="glass-panel service-card">
+          <div class="service-icon">
+            <i class="bi bi-camera"></i>
+          </div>
+          <h3 class="service-title" data-translate="service_3_title">Photography &amp; Photo Editing</h3>
+          <p class="service-desc" data-translate="service_3_desc">Providing professional photoshoot sessions and expert digital post-processing, skin retouching, color grading, and creative layouts.</p>
+        </div>
+
+        <div class="glass-panel service-card">
+          <div class="service-icon">
+            <i class="bi bi-phone"></i>
+          </div>
+          <h3 class="service-title" data-translate="service_1_title">Android App Development</h3>
+          <p class="service-desc" data-translate="service_1_desc">Designing, building, and deploying fully native or hybrid mobile apps with smooth performance, clean layouts, and rich native feature integration.</p>
+        </div>
+        
+        <div class="glass-panel service-card">
+          <div class="service-icon">
+            <i class="bi bi-window"></i>
+          </div>
+          <h3 class="service-title" data-translate="service_2_title">Full-Stack Web Development</h3>
+          <p class="service-desc" data-translate="service_2_desc">Developing modern websites, administration panels, and database integrations. Secure, bilingual, and fully responsive across all screens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-translate="skills_subtitle">Tech Stack &amp; Tools</span>
+        <h2 class="section-title" data-translate="skills_title">Technical &amp; Creative Skills</h2>
+        <p class="section-desc" data-translate="skills_desc">Here is the selection of tools and technologies I use to deliver high-quality code and digital artwork.</p>
+      </div>
+      
+      <div class="skills-grid">
+        <div class="glass-panel skill-card photo">
+          <div class="skill-icon"><i class="bi bi-camera-fill"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Photoshoot &amp; Composition</div>
+            <div class="skill-level" data-translate="skill_exp_advanced">Advanced / Expert</div>
+          </div>
+        </div>
+        
+        <div class="glass-panel skill-card adobe">
+          <div class="skill-icon"><i class="bi bi-images"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Adobe Photoshop &amp; Lightroom</div>
+            <div class="skill-level" data-translate="skill_exp_advanced">Advanced / Expert</div>
+          </div>
+        </div>
+
+        <div class="glass-panel skill-card android">
+          <div class="skill-icon"><i class="bi bi-phone-fill"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Android App Dev (Java/Kotlin/NDK)</div>
+            <div class="skill-level" data-translate="skill_exp_advanced">Advanced / Expert</div>
+          </div>
+        </div>
+        
+        <div class="glass-panel skill-card web">
+          <div class="skill-icon"><i class="bi bi-globe"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Web Development (HTML/CSS/JS, Node.js, PHP)</div>
+            <div class="skill-level" data-translate="skill_exp_advanced">Advanced / Expert</div>
+          </div>
+        </div>
+
+        <div class="glass-panel skill-card native">
+          <div class="skill-icon"><i class="bi bi-terminal-fill"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Native Programming (C/C++ &amp; Python)</div>
+            <div class="skill-level" data-translate="skill_exp_advanced">Advanced / Expert</div>
+          </div>
+        </div>
+
+        <div class="glass-panel skill-card db">
+          <div class="skill-icon"><i class="bi bi-database-fill"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Database Systems (MySQL, MongoDB, SQL)</div>
+            <div class="skill-level" data-translate="skill_exp_advanced">Advanced / Expert</div>
+          </div>
+        </div>
+        
+        <div class="glass-panel skill-card api">
+          <div class="skill-icon"><i class="bi bi-gear-fill"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Backend APIs &amp; State Management</div>
+            <div class="skill-level" data-translate="skill_exp_advanced">Advanced / Expert</div>
+          </div>
+        </div>
+        
+        <div class="glass-panel skill-card crypto">
+          <div class="skill-icon"><i class="bi bi-currency-bitcoin"></i></div>
+          <div class="skill-info">
+            <div class="skill-name">Crypto Integration &amp; Security</div>
+            <div class="skill-level" data-translate="skill_exp_intermediate">Intermediate / Advanced</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO SECTION -->
+  <section id="portfolio" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-translate="portfolio_subtitle">Completed Works</span>
+        <h2 class="section-title" data-translate="portfolio_title">Featured Projects</h2>
+        <p class="section-desc" data-translate="portfolio_desc">Browse my project records, mobile apps, and photography captures. Select categories to filter results.</p>
+      </div>
+      
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all" data-translate="filter_all">All</button>
+        <button class="filter-btn" data-filter="photography" data-translate="filter_photography">Photography &amp; Editing</button>
+        <button class="filter-btn" data-filter="websites" data-translate="filter_websites">Websites</button>
+        <button class="filter-btn" data-filter="apps" data-translate="filter_apps">Android Apps</button>
+      </div>
+      
+      <!-- Portfolio Grid dynamically populated by app.js -->
+      <div class="portfolio-grid" id="portfolioGrid"></div>
+      
+      <div class="portfolio-view-all">
+        <a href="projects.html" class="btn-main btn-outline">
+          <span data-translate="portfolio_view_all">View All Projects</span> <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PROJECT ESTIMATOR -->
+  <section id="estimator" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-translate="estimator_subtitle">Pricing Calculator</span>
+        <h2 class="section-title" data-translate="estimator_title">Interactive Project Estimator</h2>
+        <p class="section-desc" data-translate="estimator_desc">Select your desired features and get an instant development estimate. Send it directly to me on WhatsApp!</p>
+      </div>
+      
+      <div class="glass-panel estimator-card">
+        <h3 class="estimator-title"><i class="bi bi-calculator-fill text-gradient-primary"></i> <span data-translate="estimator_card_title">Project Details</span></h3>
+        
+        <div class="estimator-grid">
+          <div class="estimator-group">
+            <label class="estimator-label" data-translate="est_type">Project Type</label>
+            <select class="estimator-select" id="estProjectType">
+              <option value="photography" data-translate="est_type_photography" selected>Creative Photography &amp; Retouch Session</option>
+              <option value="websites" data-translate="est_type_websites">Web Development (Dashboard / Website)</option>
+              <option value="apps" data-translate="est_type_apps">Android App Development</option>
+            </select>
+          </div>
+          
+          <div class="estimator-group">
+            <label class="estimator-label" data-translate="est_scale">Project Scale</label>
+            <select class="estimator-select" id="estProjectScale">
+              <option value="small" data-translate="est_scale_small">Basic / Personal</option>
+              <option value="medium" data-translate="est_scale_medium" selected">Standard Business / Full Session</option>
+              <option value="large" data-translate="est_scale_large">Advanced / Commercial Campaign</option>
+            </select>
+          </div>
+          
+          <div class="estimator-checkbox-group">
+            <label class="estimator-label" style="grid-column: 1 / -1; margin-bottom: 0.5rem;" data-translate="est_features">Additional Services / Custom Options</label>
+            
+            <label class="estimator-checkbox">
+              <input type="checkbox" id="featSecurity" checked>
+              <span id="labelSecurity" data-translate="feat_security">Captcha &amp; Security Integration</span>
+            </label>
+            
+            <label class="estimator-checkbox">
+              <input type="checkbox" id="featCrypto" checked>
+              <span id="labelCrypto" data-translate="feat_crypto">USDT Automatic Deposit Checker</span>
+            </label>
+            
+            <label class="estimator-checkbox">
+              <input type="checkbox" id="featTranslate" checked>
+              <span id="labelTranslate" data-translate="feat_translate">Multi-language (i18n) Switcher</span>
+            </label>
+            
+            <label class="estimator-checkbox">
+              <input type="checkbox" id="featTheme">
+              <span id="labelTheme" data-translate="feat_theme">Dark/Light Theme Switcher</span>
+            </label>
+            
+            <label class="estimator-checkbox">
+              <input type="checkbox" id="featOption5" checked>
+              <span id="labelOption5" data-translate="feat_option5">Admin Panel &amp; CMS Integration</span>
+            </label>
+            
+            <label class="estimator-checkbox">
+              <input type="checkbox" id="featOption6">
+              <span id="labelOption6" data-translate="feat_option6">SEO Optimization &amp; Analytics</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="estimator-result-box">
+          <button class="btn-main btn-primary-gradient" id="btnSendEstimate" style="width: auto; margin: 0 auto;">
+            <i class="bi bi-whatsapp"></i> <span data-translate="btn_send_estimate">Discuss Project on WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSIONAL EXPERIENCE TIMELINE -->
+  <section id="experience" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-translate="exp_subtitle">My History</span>
+        <h2 class="section-title" data-translate="exp_title">Professional Journey</h2>
+        <p class="section-desc" data-translate="exp_desc">A summary of my roles and achievements in mobile coding and web engineering.</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date" data-translate="exp_date_2">2021 - 2024</div>
+          <h3 class="timeline-title" data-translate="exp_title_2">Creative Director &amp; Photographer</h3>
+          <div class="timeline-company" data-translate="exp_company_2">Rexer Zaim Photography &amp; Design</div>
+          <p class="timeline-desc" data-translate="exp_desc_2">Conducted professional photo shoot sessions, edited and retouched raw photo collections using Adobe Photoshop/Lightroom, and designed responsive web portfolios for clients.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date" data-translate="exp_date_1">2024 - Present</div>
+          <h3 class="timeline-title" data-translate="exp_title_1">Senior Full-Stack &amp; App Architect</h3>
+          <div class="timeline-company" data-translate="exp_company_1">Oscar Panel Operations &amp; Freelance Hub</div>
+          <p class="timeline-desc" data-translate="exp_desc_1">Developing secure staging portals, custom Android applications with Kotlin, on-chain crypto balance claim trackers, and complex web3 integrations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="testimonials" class="section reveal testimonials-section-bg">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-translate="testimonials_subtitle">Client Feedback</span>
+        <h2 class="section-title" data-translate="testimonials_title">What Clients Say</h2>
+        <p class="section-desc" data-translate="testimonials_desc">Here is what founders, business owners, and partners say about working with me.</p>
+      </div>
+      <div class="testimonials-grid" id="testimonialsGrid"></div>
+    </div>
+  </section>
+
+  <!-- CONTACTS SECTION -->
+  <section id="contact" class="section reveal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" data-translate="contact_subtitle">Get in Touch</span>
+        <h2 class="section-title" data-translate="contact_title">Contact Channels</h2>
+        <p class="section-desc" data-translate="contact_desc">Feel free to reach out to me via any of the direct links below. I am ready to collaborate with you.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="glass-panel contact-card telegram">
+          <div class="contact-icon"><i class="bi bi-telegram"></i></div>
+          <div class="contact-label">Telegram</div>
+          <div class="contact-value">@Daspo90</div>
+          <a href="https://t.me/Daspo90" target="_blank" rel="noopener noreferrer" class="btn-contact" data-translate="contact_chat">Chat Now</a>
+        </div>
+        
+        <div class="glass-panel contact-card facebook">
+          <div class="contact-icon"><i class="bi bi-facebook"></i></div>
+          <div class="contact-label">Facebook</div>
+          <div class="contact-value">Md Rayhan Uddin</div>
+          <a href="https://www.facebook.com/share/1EN9dSV8ah/" target="_blank" rel="noopener noreferrer" class="btn-contact" data-translate="contact_connect">Connect</a>
+        </div>
+        
+        <div class="glass-panel contact-card instagram">
+          <div class="contact-icon"><i class="bi bi-instagram"></i></div>
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">@rexer_zaim</div>
+          <a href="https://www.instagram.com/rexer_zaim?igsh=Yjhkbm5tcTMxZ3U2" target="_blank" rel="noopener noreferrer" class="btn-contact" data-translate="contact_follow">Follow</a>
+        </div>
+        
+        <div class="glass-panel contact-card whatsapp">
+          <div class="contact-icon"><i class="bi bi-whatsapp"></i></div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">+880 1754 297175</div>
+          <a href="https://wa.me/8801754297175" target="_blank" rel="noopener noreferrer" class="btn-contact" data-translate="contact_chat">Chat Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section reveal">
+    <div class="container">
+      <div class="cta-glow"></div>
+      <div class="glass-panel cta-card">
+        <span class="section-subtitle" data-translate="cta_badge">Let's Collaborate</span>
+        <h2 class="cta-title" data-translate="cta_title">Let's Build Something Extraordinary</h2>
+        <p class="cta-desc" data-translate="cta_desc">Whether you need a powerful Android app, a secure web dashboard, or professional photography services, I'm ready to bring your vision to life.</p>
+        <div class="cta-btns">
+          <a href="#estimator" class="btn-main btn-primary-gradient">
+            <span data-translate="cta_btn_start">Start a Project</span> <i class="bi bi-arrow-right"></i>
+          </a>
+          <a href="#portfolio" class="btn-main btn-outline">
+            <span data-translate="cta_btn_portfolio">View Portfolio</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="#" class="footer-logo">Rayhan<span class="logo-dot"></span></a>
+        <nav class="footer-nav">
+          <a href="#home" data-translate="nav_home">Home</a>
+          <a href="#services" data-translate="nav_services">Services</a>
+          <a href="#portfolio" data-translate="nav_portfolio">Projects</a>
+          <a href="about.html" data-translate="nav_about">About</a>
+          <a href="blog.html" data-translate="nav_blog">Blog</a>
+          <a href="#contact" data-translate="nav_contact">Contact</a>
+        </nav>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/rexer_zaim?igsh=Yjhkbm5tcTMxZ3U2" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://wa.me/8801754297175" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="https://t.me/Daspo90" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Telegram"><i class="bi bi-telegram"></i></a>
+          <a href="https://www.facebook.com/share/1EN9dSV8ah/" target="_blank" rel="noopener noreferrer" class="footer-social-link" title="Facebook"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-copyright" style="text-align: center;">
+        &copy; <span id="footerYear">2026</span> Md Rayhan Uddin. <span data-translate="footer_rights">All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX MODAL FOR PORTFOLIO -->
+  <div class="lightbox" id="portfolioLightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close Lightbox">&times;</button>
+      <img src="" alt="Zoomed Project Screen" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-caption" id="lightboxCaption">Project Title</div>
+      <p style="color: var(--text-secondary); text-align: center; margin-top: 0.5rem; max-width: 500px; font-size: 0.9rem;" id="lightboxDesc">Project details...</p>
+    </div>
+  </div>
+
+  <!-- FLOATING ACTION WIDGET -->
+  <div class="floating-widget" id="floatingWidget">
+    <div class="floating-menu">
+      <a href="https://www.instagram.com/rexer_zaim?igsh=Yjhkbm5tcTMxZ3U2" target="_blank" rel="noopener noreferrer" class="floating-item instagram" data-tooltip="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://wa.me/8801754297175" target="_blank" rel="noopener noreferrer" class="floating-item whatsapp" data-tooltip="WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+      <a href="https://t.me/Daspo90" target="_blank" rel="noopener noreferrer" class="floating-item telegram" data-tooltip="Telegram">
+        <i class="bi bi-telegram"></i>
+      </a>
+      <a href="https://www.facebook.com/share/1EN9dSV8ah/" target="_blank" rel="noopener noreferrer" class="floating-item facebook" data-tooltip="Facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+    </div>
+    <button class="floating-trigger" id="floatingTrigger" aria-label="Quick Connect Menu">
+      <i class="bi bi-share-fill"></i>
+    </button>
+  </div>
+
+  <script src="app.js?v=14"></script>
+</body>
+</html>
