@@ -327,7 +327,7 @@ const portfolioProjects = [
   },
   // Apps Category
   {
-    image: "proj_photoedit_app.png",
+    image: "proj_photoeditor.png",
     category: "apps",
     title_en: "Photo Editor & Camera App",
     title_bd: "\u09ab\u099f\u09cb \u098f\u09a1\u09bf\u099f\u09b0 \u0993 \u0995\u09cd\u09af\u09be\u09ae\u09c7\u09b0\u09be \u0985\u09cd\u09af\u09be\u09aa",
