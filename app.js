@@ -263,7 +263,7 @@ const portfolioProjects = [
     isWide: true
   },
   {
-    image: "web_ecommerce.png",
+    image: "proj_rxzai.png",
     category: "websites",
     title_en: "RXZ.Ai Chat \u2014 AI Chat Platform",
     title_bd: "RXZ.Ai \u099a\u09cd\u09af\u09be\u099f \u2014 AI \u099a\u09cd\u09af\u09be\u099f \u09aa\u09cd\u09b2\u09cd\u09af\u09be\u099f\u09ab\u09b0\u09cd\u09ae",
