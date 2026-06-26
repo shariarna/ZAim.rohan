@@ -263,6 +263,16 @@ const portfolioProjects = [
     isWide: true
   },
   {
+    image: "web_ecommerce.png",
+    category: "websites",
+    title_en: "RXZ.Ai Chat \u2014 AI Chat Platform",
+    title_bd: "RXZ.Ai \u099a\u09cd\u09af\u09be\u099f \u2014 AI \u099a\u09cd\u09af\u09be\u099f \u09aa\u09cd\u09b2\u09cd\u09af\u09be\u099f\u09ab\u09b0\u09cd\u09ae",
+    desc_en: "A premium AI chat interface built with glassmorphism design. Features multi-model AI support, DALL-E 3 image generation, TradingView charts, chat history, and dark/light theme switching.",
+    desc_bd: "\u0997\u09cd\u09b2\u09be\u09b8\u09ae\u09b0\u09ab\u09bf\u099c\u09ae \u09a1\u09bf\u099c\u09be\u0987\u09a8\u09c7 \u09a4\u09c8\u09b0\u09bf \u09aa\u09cd\u09b0\u09bf\u09ae\u09bf\u09af\u09bc\u09be\u09ae AI \u099a\u09cd\u09af\u09be\u099f \u0987\u09a8\u09cd\u099f\u09be\u09b0\u09ab\u09c7\u09b8\u0964 DALL-E 3 \u0987\u09ae\u09c7\u099c \u099c\u09c7\u09a8\u09be\u09b0\u09c7\u09b6\u09a8, TradingView \u099a\u09be\u09b0\u09cd\u099f, \u099a\u09cd\u09af\u09be\u099f \u09b9\u09bf\u09b8\u09cd\u099f\u09cb\u09b0\u09bf \u09b8\u09b9 \u09b8\u09ae\u09cd\u09aa\u09c2\u09b0\u09cd\u09a3 AI \u09aa\u09cd\u09b2\u09cd\u09af\u09be\u099f\u09ab\u09b0\u09cd\u09ae\u0964",
+    link: "https://patoyari-gpt.vercel.app/",
+    isWide: true
+  },
+  {
     image: "proj_7up.png",
     category: "websites",
     title_en: "7UP \u2014 Brand Landing Page",
