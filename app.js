@@ -301,7 +301,7 @@ const portfolioProjects = [
     isWide: true
   },
   {
-    image: "proj_minigames.png",
+    image: "proj_minigames2.png",
     category: "websites",
     title_en: "Mini Games Collection",
     title_bd: "\u09ae\u09bf\u09a8\u09bf \u0997\u09c7\u09ae\u09b8 \u0995\u09be\u09b2\u09c7\u0995\u09b6\u09a8",
