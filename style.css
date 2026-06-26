@@ -729,7 +729,7 @@ body[data-theme="light"] .contact-icon {
 .portfolio-filters {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
 }
@@ -738,18 +738,92 @@ body[data-theme="light"] .contact-icon {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
-  padding: 0.6rem 1.5rem;
+  padding: 0.7rem 1.6rem;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .filter-btn:hover, .filter-btn.active {
   background: var(--primary-gradient);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 4px 12px var(--glow-primary);
+  box-shadow: 0 8px 24px var(--glow-primary);
+  transform: translateY(-2px);
+}
+
+/* Pulse highlight animation when NO filter has been clicked yet */
+.portfolio-filters:not(.has-active) .filter-btn {
+  animation: filterPulse 2.5s infinite ease-in-out;
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+.portfolio-filters:not(.has-active) .filter-btn:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.portfolio-filters:not(.has-active) .filter-btn:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.portfolio-filters:not(.has-active) .filter-btn:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+@keyframes filterPulse {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    box-shadow: var(--shadow-sm);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.03);
+    border-color: rgba(139, 92, 246, 0.55);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+  }
+}
+
+/* Portfolio Empty State styles */
+.portfolio-empty-state {
+  margin-top: 1rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.portfolio-empty-state-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.portfolio-empty-state-filters .filter-btn {
+  animation: filterPulse 2.5s infinite ease-in-out;
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.08);
+}
+
+.portfolio-empty-state-filters .filter-btn:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.portfolio-empty-state-filters .filter-btn:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.portfolio-empty-state-filters .filter-btn:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+@keyframes floatArrows {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
 }
 
 .portfolio-grid {

@@ -368,6 +368,13 @@ function renderPortfolioItems(lang = 'en') {
   
   grid.innerHTML = '';
   
+  // Check if there is an active filter button currently
+  const activeFilterBtn = document.querySelector('.portfolio-filters .filter-btn.active');
+  const activeFilter = activeFilterBtn ? activeFilterBtn.getAttribute('data-filter') : null;
+  
+  // If there is no active filter button, hide all items initially and show the empty state message
+  const hideAllInitially = !activeFilter;
+  
   portfolioProjects.forEach(proj => {
     const title = lang === 'bd' ? proj.title_bd : proj.title_en;
     const desc = lang === 'bd' ? proj.desc_bd : proj.desc_en;
@@ -381,6 +388,14 @@ function renderPortfolioItems(lang = 'en') {
     item.setAttribute('data-title', title);
     item.setAttribute('data-desc', desc);
     
+    if (hideAllInitially) {
+      item.style.display = 'none';
+      item.style.opacity = '0';
+    } else if (activeFilter && activeFilter !== 'all' && proj.category !== activeFilter) {
+      item.style.display = 'none';
+      item.style.opacity = '0';
+    }
+    
     item.innerHTML = `
       <img src="${proj.image}" alt="${title}" class="portfolio-img" loading="lazy">
       <div class="portfolio-overlay">
@@ -392,6 +407,53 @@ function renderPortfolioItems(lang = 'en') {
     
     grid.appendChild(item);
   });
+  
+  if (hideAllInitially) {
+    // Append beautiful empty state message
+    const emptyState = document.createElement('div');
+    emptyState.id = 'portfolioEmptyState';
+    emptyState.className = 'portfolio-empty-state glass-panel reveal active';
+    emptyState.style.gridColumn = '1 / -1';
+    emptyState.style.padding = '3.5rem 2rem';
+    emptyState.style.textAlign = 'center';
+    emptyState.style.display = 'flex';
+    emptyState.style.flexDirection = 'column';
+    emptyState.style.alignItems = 'center';
+    emptyState.style.justifyContent = 'center';
+    emptyState.style.gap = '1.25rem';
+    
+    const msgIcon = '<i class="bi bi-folder2-open text-gradient-primary" style="font-size: 3.5rem;"></i>';
+    const msgTitle = lang === 'bd' ? 'আমার প্রজেক্টগুলো দেখুন' : 'Explore My Projects';
+    const msgDesc = lang === 'bd' ? 'আমার করা কাজগুলো দেখতে নিচে যেকোনো একটি ক্যাটাগরি নির্বাচন করুন:' : 'Select a category below to see my photography, website portfolios, or mobile apps:';
+    
+    // Dynamically retrieve labels for empty state buttons
+    const btnPhotoLabel = translations[lang]['filter_photography'];
+    const btnWebLabel = translations[lang]['filter_websites'];
+    const btnAppLabel = translations[lang]['filter_apps'];
+    
+    emptyState.innerHTML = `
+      ${msgIcon}
+      <h3 style="font-size: 1.6rem; font-weight: 700; margin: 0;">${msgTitle}</h3>
+      <p style="color: var(--text-secondary); max-width: 480px; margin: 0 0 0.5rem 0; font-size: 0.98rem; line-height: 1.5;">${msgDesc}</p>
+      <div class="portfolio-empty-state-filters">
+        <button class="filter-btn empty-state-btn" data-filter="photography">${btnPhotoLabel}</button>
+        <button class="filter-btn empty-state-btn" data-filter="websites">${btnWebLabel}</button>
+        <button class="filter-btn empty-state-btn" data-filter="apps">${btnAppLabel}</button>
+      </div>
+    `;
+    grid.appendChild(emptyState);
+    
+    // Wire up event listeners to empty state buttons to trigger topFilters
+    emptyState.querySelectorAll('.empty-state-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filterVal = btn.getAttribute('data-filter');
+        const topBtn = document.querySelector(`#topFilters .filter-btn[data-filter="${filterVal}"]`);
+        if (topBtn) {
+          topBtn.click();
+        }
+      });
+    });
+  }
   
   bindLightboxEvents();
   initTiltEffect(); // Re-apply tilt to newly generated items
@@ -689,15 +751,39 @@ function initFloatingWidget() {
 
 // --- Portfolio Filters Binding ---
 function initFilters() {
+  const filtersContainer = document.querySelector('.portfolio-filters');
   const filters = document.querySelectorAll('.filter-btn');
+  
+  // Set has-active if there's already an active filter on load
+  const hasActiveInitially = document.querySelector('.portfolio-filters .filter-btn.active');
+  if (hasActiveInitially && filtersContainer) {
+    filtersContainer.classList.add('has-active');
+  }
   
   filters.forEach(btn => {
     btn.addEventListener('click', () => {
       filters.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      if (filtersContainer) {
+        filtersContainer.classList.add('has-active');
+        
+        // Show topFilters smoothly if it was hidden
+        if (filtersContainer.id === 'topFilters') {
+          filtersContainer.style.display = 'flex';
+          setTimeout(() => {
+            filtersContainer.style.opacity = '1';
+            filtersContainer.style.transform = 'translateY(0)';
+          }, 50);
+        }
+      }
       
       const filterValue = btn.getAttribute('data-filter');
       const items = document.querySelectorAll('.portfolio-item');
+      
+      const emptyState = document.getElementById('portfolioEmptyState');
+      if (emptyState) {
+        emptyState.style.display = 'none';
+      }
       
       items.forEach(item => {
         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
