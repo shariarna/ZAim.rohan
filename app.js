@@ -1006,7 +1006,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (langSelect) {
     const savedLang = localStorage.getItem('lang') || 'en';
     langSelect.value = savedLang;
-    translatePage(savedLang);
+    
+    // ⚡ Fetch data.json first, then render
+    fetch('data.json?v=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.projects && data.projects.length > 0) {
+          // Store in localStorage so renderPortfolioItems picks it up
+          localStorage.setItem('rayhan_custom_projects', JSON.stringify(data.projects));
+        }
+      })
+      .catch(() => {
+        // Offline or local — use whatever is in localStorage or defaults
+      })
+      .finally(() => {
+        translatePage(savedLang);
+      });
     
     langSelect.addEventListener('change', (e) => {
       translatePage(e.target.value);
@@ -1024,3 +1039,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
   }, 200);
 });
+
