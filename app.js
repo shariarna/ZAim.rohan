@@ -190,7 +190,7 @@ const translations = {
     testimonials_desc: "প্রতিষ্ঠাতা, ব্যবসায়িক মালিক এবং অংশীদাররা আমার সাথে কাজ করার অভিজ্ঞতা সম্পর্কে কী বলেন।",
     cta_badge: "একসাথে কাজ করুন",
     cta_title: "চলুন অসাধারণ কিছু তৈরি করি",
-    cta_desc: "শক্তিশালী অ্যান্ড্রয়েড অ্যাপ, সিকিউর ওয়েব ড্যাশবোর্ড, বা পেশাদার ফটোগ্রাফি সেবার প্রয়োজন হোক - আমি আপনার স্বপ্নকে বাস্তবে রূপ দিতে প্রস্তুত।",
+    cta_desc: "শক্তিশালী অ্যান্ড্রয়েড অ্যাপ, সিকিউর ওয়েব ড্যাসবোর্ড, বা পেশাদার ফটোগ্রাফি সেবার প্রয়োজন হোক - আমি আপনার স্বপ্নকে বাস্তবে রূপ দিতে প্রস্তুত।",
     cta_btn_start: "প্রজেক্ট শুরু করুন",
     cta_btn_portfolio: "পোর্টফোলিও দেখুন"
   }
@@ -257,7 +257,17 @@ const portfolioProjects = [
     title_en: "Creative Photography Session",
     title_bd: "\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09c7\u099f\u09bf\u09ad \u09ab\u099f\u09cb\u0997\u09cd\u09b0\u09be\u09ab\u09bf \u09b8\u09c7\u09b6\u09a8",
     desc_en: "A professional photography session showcasing creative composition, lighting, and artistic visual storytelling.",
-    desc_bd: "\u09aa\u09cd\u09b0\u09ab\u09c7\u09b6\u09a8\u09be\u09b2 \u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09c7\u099f\u09bf\u09ad \u09ab\u09c7\u09be\u099f\u09cb\u0997\u09cd\u09b0\u09be\u09ab\u09bf \u09b8\u09c7\u09b6\u09a8 — \u0985\u09aa\u09c2\u09b0\u09cd\u09ac \u0995\u09ae\u09cd\u09aa\u09cb\u099c\u09bf\u09b6\u09a8, \u0986\u09b2\u09cb\u0995 \u0993 \u09a6\u09c3\u09b6\u09cd\u09af\u09ae\u09be\u09a8 \u0997\u09b2\u09cd\u09aa \u09ac\u09b2\u09be\u09b0 \u09b6\u09bf\u09b2\u09cd\u09aa\u0964",
+    desc_bd: "\u09aa\u09cd\u09b0\u09ab\u09c7\u09b6\u09a8\u09be\u09b2 \u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09c7\u099f\u09bf\u09ad \u09ab\u09c7\u09cb\u099f\u09cb\u0997\u09cd\u09b0\u09be\u09ab\u09bf \u09b8\u09c7\u09b6\u09a8 — \u0985\u09aa\u09c2\u09b0\u09cd\u09ac \u0995\u09ae\u09cd\u09aa\u09cb\u099c\u09bf\u09b6\u09a8, \u0986\u09b2\u09cb\u0995 \u0993 \u09a6\u09c3\u09b6\u09cd\u09af\u09ae\u09be\u09a8 \u0997\u09b2\u09cd\u09aa \u09ac\u09b2\u09be\u09b0 \u09b6\u09bf\u09b2\u09cd\u09aa\u0964",
+    link: "https://www.facebook.com/share/p/19Eo5QJKHS/",
+    isWide: true
+  },
+  {
+    image: "tt.png.png",
+    category: "photography",
+    title_en: "Photography & Editing Work",
+    title_bd: "\u09ab\u099f\u09cb\u0997\u09cd\u09b0\u09be\u09ab\u09bf \u0993 \u098f\u09a1\u09bf\u099f\u09bf\u0982 \u0995\u09be\u099c",
+    desc_en: "A stunning photography and editing showcase featuring expert color grading, skin retouching, and premium visual composition.",
+    desc_bd: "\u09a6\u0995\u09cd\u09b7 \u0995\u09be\u09b2\u09be\u09b0 \u0997\u09cd\u09b0\u09c7\u09a1\u09bf\u0982, \u09b8\u09cd\u0995\u09bf\u09a8 \u09b0\u09bf\u099f\u09be\u099a\u09bf\u0982 \u0993 \u09aa\u09cd\u09b0\u09bf\u09ae\u09bf\u09af\u09bc\u09be\u09ae \u09ad\u09bf\u099c\u09c1\u09af\u09bc\u09be\u09b2 \u0995\u09ae\u09cd\u09aa\u09cb\u099c\u09bf\u09b6\u09a8 \u09b8\u09b9 \u0985\u09b8\u09be\u09a7\u09be\u09b0\u09a3 \u09ab\u099f\u09cb\u0997\u09cd\u09b0\u09be\u09ab\u09bf \u09b6\u09cb\u0995\u09c7\u09b8\u0964",
     isWide: true
   },
   // Web Category
@@ -374,7 +384,11 @@ const portfolioProjects = [
 function renderPortfolioItems(lang = 'en') {
   const grid = document.getElementById('portfolioGrid');
   if (!grid) return;
-  
+
+  // ⚡ Load from admin panel (localStorage) if available
+  const adminData = localStorage.getItem('rayhan_custom_projects');
+  const activeProjects = adminData ? JSON.parse(adminData) : portfolioProjects;
+
   grid.innerHTML = '';
   
   // Check if there is an active filter button currently
@@ -384,7 +398,7 @@ function renderPortfolioItems(lang = 'en') {
   // If there is no active filter button, hide all items initially and show the empty state message
   const hideAllInitially = !activeFilter;
   
-  portfolioProjects.forEach(proj => {
+  activeProjects.forEach(proj => {
     const title = lang === 'bd' ? proj.title_bd : proj.title_en;
     const desc = lang === 'bd' ? proj.desc_bd : proj.desc_en;
     const catLabelKey = proj.category === 'websites' ? 'cat_staging' : (proj.category === 'apps' ? 'cat_interface' : 'cat_component');
@@ -393,7 +407,8 @@ function renderPortfolioItems(lang = 'en') {
     const item = document.createElement('div');
     item.className = 'portfolio-item reveal' + (proj.isWide ? ' wide' : '');
     item.setAttribute('data-category', proj.category);
-    item.setAttribute('data-image', proj.image);
+    const imgSrc = proj.imageData || proj.image || '';
+    item.setAttribute('data-image', imgSrc);
     item.setAttribute('data-title', title);
     item.setAttribute('data-desc', desc);
     
@@ -406,7 +421,7 @@ function renderPortfolioItems(lang = 'en') {
     }
     
     item.innerHTML = `
-      <img src="${proj.image}" alt="${title}" class="portfolio-img" loading="lazy">
+      <img src="${proj.imageData || proj.image || ''}" alt="${title}" class="portfolio-img" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-cat">${catLabel}</div>
         <h3 class="portfolio-title">${title}</h3>

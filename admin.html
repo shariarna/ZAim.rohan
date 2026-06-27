@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Admin — Rayhan Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root{--pr:#8b5cf6;--ac:#3b82f6;--bg:#08080f;--bg2:#0f0f1a;--card:rgba(255,255,255,.045);--bdr:rgba(255,255,255,.09);--tx:#f1f5f9;--mu:#64748b;--ok:#10b981;--er:#ef4444;}
+    *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;background-image:radial-gradient(ellipse 60% 40% at 20% 10%,rgba(139,92,246,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 85%,rgba(59,130,246,.12) 0%,transparent 70%);}
+    .hidden{display:none!important;}
+    input,select,textarea,button{font-family:inherit;}
+
+    /* LOGIN */
+    #loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1.5rem;}
+    .login-card{background:rgba(255,255,255,.05);backdrop-filter:blur(24px);border:1px solid var(--bdr);border-radius:28px;padding:2.5rem 1.8rem;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+    .login-logo{text-align:center;margin-bottom:2rem;}
+    .logo-icon{width:68px;height:68px;background:linear-gradient(135deg,var(--pr),var(--ac));border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem;box-shadow:0 0 35px rgba(139,92,246,.45);}
+    .login-logo h1{font-size:1.35rem;font-weight:800;}
+    .login-logo p{color:var(--mu);font-size:.82rem;margin-top:.3rem;}
+    .form-group{margin-bottom:1.1rem;}
+    .form-label{display:block;font-size:.75rem;font-weight:700;color:var(--mu);margin-bottom:.45rem;text-transform:uppercase;letter-spacing:.07em;}
+    .input-wrap{position:relative;}
+    .form-input,.form-select,.form-textarea{width:100%;background:rgba(255,255,255,.06);border:1.5px solid var(--bdr);border-radius:13px;padding:.85rem 1rem;color:var(--tx);font-size:.97rem;outline:none;transition:border-color .2s,box-shadow .2s;}
+    .form-input.pr{padding-right:3rem;}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(139,92,246,.18);}
+    .form-textarea{resize:vertical;min-height:80px;line-height:1.5;}
+    .form-select{-webkit-appearance:none;cursor:pointer;}
+    .inp-icon{position:absolute;right:.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--mu);cursor:pointer;font-size:1.1rem;padding:0;}
+    .form-hint{font-size:.73rem;color:var(--mu);margin-top:.35rem;}
+    .btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.9rem;border-radius:13px;border:none;font-size:.97rem;font-weight:700;cursor:pointer;transition:all .2s;}
+    .btn-primary{background:linear-gradient(135deg,var(--pr),var(--ac));color:#fff;box-shadow:0 4px 22px rgba(139,92,246,.38);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(139,92,246,.5);}
+    .btn-primary:active{transform:none;}
+    .btn-danger{background:rgba(239,68,68,.14);color:var(--er);border:1.5px solid rgba(239,68,68,.3);}
+    .btn-danger:hover{background:rgba(239,68,68,.22);}
+    .btn-success{background:rgba(16,185,129,.14);color:var(--ok);border:1.5px solid rgba(16,185,129,.3);}
+    .btn-ghost{background:rgba(255,255,255,.05);color:var(--mu);border:1.5px solid var(--bdr);}
+    .btn-ghost:hover{background:rgba(255,255,255,.09);}
+    .btn-sm{padding:.45rem .85rem;font-size:.8rem;width:auto;border-radius:9px;}
+    .alert{padding:.8rem 1rem;border-radius:12px;font-size:.85rem;margin-bottom:1rem;display:none;}
+    .alert-danger{background:rgba(239,68,68,.13);border:1px solid rgba(239,68,68,.3);color:#fca5a5;}
+    .alert-success{background:rgba(16,185,129,.13);border:1px solid rgba(16,185,129,.3);color:#6ee7b7;}
+
+    /* DASHBOARD */
+    #dashboard{display:none;padding-bottom:80px;}
+    .top-bar{position:sticky;top:0;z-index:100;background:rgba(8,8,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;}
+    .top-bar-logo{font-size:1.05rem;font-weight:800;background:linear-gradient(135deg,var(--pr),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .top-sub{font-size:.7rem;color:var(--mu);}
+    .icon-btn{background:rgba(255,255,255,.05);border:1.5px solid var(--bdr);border-radius:10px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--tx);cursor:pointer;font-size:1rem;transition:all .2s;}
+    .icon-btn:hover{background:rgba(255,255,255,.1);}
+    .flex{display:flex;} .items-c{align-items:center;} .jc-sb{justify-content:space-between;} .g1{gap:.6rem;} .g2{gap:1rem;}
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(8,8,15,.96);backdrop-filter:blur(20px);border-top:1px solid var(--bdr);display:flex;}
+    .nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.22rem;padding:.65rem .5rem;border:none;background:none;color:var(--mu);font-size:.68rem;font-weight:700;cursor:pointer;transition:all .2s;}
+    .nav-tab i{font-size:1.25rem;}
+    .nav-tab.active{color:var(--pr);}
+    .nav-tab.active i{filter:drop-shadow(0 0 6px rgba(139,92,246,.65));}
+    .panel{display:none;padding:1.1rem;}
+    .panel.active{display:block;}
+    .panel-title{font-size:1.15rem;font-weight:800;margin-bottom:1rem;}
+    .card{background:var(--card);border:1px solid var(--bdr);border-radius:18px;padding:1.1rem;margin-bottom:.9rem;}
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.1rem;}
+    .stat-card{background:var(--card);border:1px solid var(--bdr);border-radius:15px;padding:.9rem .7rem;text-align:center;}
+    .stat-num{font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,var(--pr),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .stat-lbl{font-size:.66rem;color:var(--mu);margin-top:.2rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+    .proj-card{display:flex;gap:.85rem;align-items:flex-start;}
+    .proj-thumb{width:72px;height:56px;border-radius:11px;flex-shrink:0;background:rgba(255,255,255,.05);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--mu);font-size:1.5rem;}
+    .proj-thumb img{width:100%;height:100%;object-fit:cover;}
+    .proj-info{flex:1;min-width:0;}
+    .proj-title{font-weight:700;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .proj-meta{font-size:.74rem;color:var(--mu);margin-top:.2rem;}
+    .proj-actions{display:flex;gap:.4rem;margin-top:.65rem;flex-wrap:wrap;}
+    .badge{display:inline-block;padding:.15rem .5rem;border-radius:7px;font-size:.68rem;font-weight:700;letter-spacing:.03em;}
+    .badge-photography{background:rgba(245,158,11,.2);color:#fbbf24;}
+    .badge-websites{background:rgba(59,130,246,.2);color:#60a5fa;}
+    .badge-apps{background:rgba(16,185,129,.2);color:#34d399;}
+    .upload-area{border:2px dashed var(--bdr);border-radius:16px;padding:1.8rem 1rem;text-align:center;cursor:pointer;transition:all .2s;position:relative;}
+    .upload-area:hover,.upload-area.over{border-color:var(--pr);background:rgba(139,92,246,.06);}
+    .upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .upload-icon{font-size:2.4rem;color:var(--pr);margin-bottom:.5rem;}
+    .upload-text{font-size:.85rem;color:var(--mu);}
+    .img-preview-wrap{margin-top:.8rem;display:none;}
+    .img-preview-wrap img{max-width:100%;max-height:180px;border-radius:12px;object-fit:contain;}
+    .or-line{display:flex;align-items:center;gap:.7rem;margin:.7rem 0;color:var(--mu);font-size:.78rem;}
+    .or-line::before,.or-line::after{content:'';flex:1;border-top:1px solid var(--bdr);}
+    .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0;}
+    .toggle-lbl{font-size:.88rem;font-weight:500;}
+    .toggle-sub{font-size:.73rem;color:var(--mu);}
+    .toggle{position:relative;width:46px;height:26px;flex-shrink:0;}
+    .toggle input{display:none;}
+    .toggle-sl{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:26px;cursor:pointer;transition:.3s;}
+    .toggle-sl::before{content:'';position:absolute;width:20px;height:20px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.3s;}
+    .toggle input:checked+.toggle-sl{background:linear-gradient(135deg,var(--pr),var(--ac));}
+    .toggle input:checked+.toggle-sl::before{transform:translateX(20px);}
+    #toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(12px);background:rgba(16,185,129,.92);color:#fff;padding:.65rem 1.4rem;border-radius:12px;font-size:.84rem;font-weight:700;opacity:0;transition:all .3s;z-index:999;backdrop-filter:blur(10px);pointer-events:none;white-space:nowrap;}
+    #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+    #toast.err{background:rgba(239,68,68,.92);}
+    .sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+    .sheet-overlay.show{display:flex;}
+    .sheet{background:var(--bg2);border:1px solid var(--bdr);border-radius:24px 24px 0 0;padding:1.4rem 1.2rem;width:100%;max-height:92vh;overflow-y:auto;animation:sheetUp .3s ease;}
+    @keyframes sheetUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+    .sheet-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;}
+    .sheet-title{font-size:1.08rem;font-weight:800;}
+    .sheet-close{background:rgba(255,255,255,.06);border:1px solid var(--bdr);border-radius:9px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:var(--tx);cursor:pointer;font-size:1rem;}
+    #confirmDialog{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(5px);z-index:300;display:none;align-items:center;justify-content:center;padding:1.5rem;}
+    #confirmDialog.show{display:flex;}
+    .confirm-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:22px;padding:1.8rem 1.4rem;width:100%;max-width:340px;text-align:center;}
+    .confirm-icon{font-size:2.5rem;margin-bottom:.8rem;}
+    .confirm-title{font-size:1.1rem;font-weight:800;margin-bottom:.5rem;}
+    .confirm-msg{font-size:.85rem;color:var(--mu);margin-bottom:1.4rem;line-height:1.5;}
+    .confirm-btns{display:flex;gap:.7rem;}
+    .confirm-btns .btn{flex:1;}
+    .settings-item{display:flex;align-items:center;justify-content:space-between;padding:.95rem 0;border-bottom:1px solid var(--bdr);}
+    .settings-item:last-child{border-bottom:none;}
+    .si-label{font-size:.9rem;font-weight:600;}
+    .si-desc{font-size:.74rem;color:var(--mu);margin-top:.2rem;}
+    #lockout{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:500;display:none;align-items:center;justify-content:center;flex-direction:column;gap:1rem;text-align:center;padding:2rem;}
+    #lockout.show{display:flex;}
+    #lockout .lk-icon{font-size:3rem;color:var(--er);}
+    #lockout h2{font-size:1.2rem;font-weight:800;}
+    #lockout p{color:var(--mu);font-size:.9rem;}
+    #lockTimer{font-size:1.8rem;font-weight:800;color:var(--er);}
+    hr.dv{border:none;border-top:1px solid var(--bdr);margin:.9rem 0;}
+    .empty{text-align:center;padding:3rem 1rem;color:var(--mu);}
+    .empty i{font-size:3rem;margin-bottom:.8rem;display:block;opacity:.35;}
+    .empty p{font-size:.9rem;}
+    .filter-bar{display:flex;gap:.5rem;margin-bottom:1rem;overflow-x:auto;padding-bottom:.3rem;}
+    .filter-bar::-webkit-scrollbar{display:none;}
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginPage">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-icon">🛡️</div>
+      <h1>Admin Panel</h1>
+      <p>Rayhan Portfolio Control</p>
+    </div>
+    <div class="alert alert-danger" id="loginAlert"></div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <div class="input-wrap">
+        <input type="password" class="form-input pr" id="loginPass" placeholder="Enter your secret password" autocomplete="current-password">
+        <button class="inp-icon" onclick="togglePass('loginPass',this)" type="button"><i class="bi bi-eye"></i></button>
+      </div>
+      <div class="form-hint" id="attemptsHint"></div>
+    </div>
+    <button class="btn btn-primary" onclick="doLogin()"><i class="bi bi-unlock-fill"></i> Login</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="top-bar">
+    <div>
+      <div class="top-bar-logo">Rayhan Admin</div>
+      <div class="top-sub" id="sessionInfo">Logged in</div>
+    </div>
+    <div class="flex g1 items-c">
+      <button class="icon-btn" onclick="window.open('index.html','_blank')" title="View Site"><i class="bi bi-box-arrow-up-right"></i></button>
+      <button class="icon-btn" onclick="doLogout()" title="Logout"><i class="bi bi-box-arrow-left"></i></button>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div class="panel active" id="panel-home">
+    <p class="panel-title">📊 Overview</p>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-lbl">Projects</div></div>
+      <div class="stat-card"><div class="stat-num" id="statPhoto">0</div><div class="stat-lbl">Photos</div></div>
+      <div class="stat-card"><div class="stat-num" id="statApps">0</div><div class="stat-lbl">Apps</div></div>
+    </div>
+    <div class="card">
+      <p style="font-weight:700;margin-bottom:.7rem;font-size:.95rem;">⚡ Quick Actions</p>
+      <button class="btn btn-primary" onclick="openAddProject()" style="margin-bottom:.6rem;"><i class="bi bi-plus-circle-fill"></i> Add New Project</button>
+      <button class="btn btn-ghost" onclick="switchTab('projects')"><i class="bi bi-grid-3x3-gap-fill"></i> Manage All Projects</button>
+    </div>
+    <div class="card">
+      <p style="font-weight:700;font-size:.85rem;color:var(--mu);margin-bottom:.5rem;">ℹ️ How It Works</p>
+      <p style="font-size:.82rem;color:var(--mu);line-height:1.6;">Add or edit projects here — changes save instantly and appear on your portfolio. Visitors only see <b style="color:var(--tx);">index.html</b> and cannot access this admin panel.</p>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="panel" id="panel-projects">
+    <div class="flex items-c jc-sb" style="margin-bottom:1rem;">
+      <p class="panel-title" style="margin:0;">🗂️ Projects</p>
+      <button class="btn btn-primary btn-sm" onclick="openAddProject()"><i class="bi bi-plus-lg"></i> Add</button>
+    </div>
+    <div class="filter-bar">
+      <button class="btn btn-primary btn-sm" id="ft-all" onclick="filterProjects('all')">All</button>
+      <button class="btn btn-ghost btn-sm" id="ft-photography" onclick="filterProjects('photography')" style="white-space:nowrap;">📷 Photo</button>
+      <button class="btn btn-ghost btn-sm" id="ft-websites" onclick="filterProjects('websites')" style="white-space:nowrap;">🌐 Web</button>
+      <button class="btn btn-ghost btn-sm" id="ft-apps" onclick="filterProjects('apps')" style="white-space:nowrap;">📱 Apps</button>
+    </div>
+    <div id="projectsList"></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="panel" id="panel-settings">
+    <p class="panel-title">⚙️ Settings</p>
+    <div class="card">
+      <p style="font-weight:700;font-size:.82rem;color:var(--mu);margin-bottom:.3rem;">SECURITY</p>
+      <div class="settings-item">
+        <div><div class="si-label">Change Password</div><div class="si-desc">Update your admin login password</div></div>
+        <button class="btn btn-ghost btn-sm" onclick="openChangePw()">Change</button>
+      </div>
+      <div class="settings-item">
+        <div><div class="si-label">Logout</div><div class="si-desc">End current admin session</div></div>
+        <button class="btn btn-danger btn-sm" onclick="doLogout()"><i class="bi bi-box-arrow-left"></i> Logout</button>
+      </div>
+    </div>
+    <div class="card">
+      <p style="font-weight:700;font-size:.82rem;color:var(--mu);margin-bottom:.3rem;">DATA</p>
+      <div class="settings-item">
+        <div><div class="si-label">Reset to Defaults</div><div class="si-desc">Restore original projects list</div></div>
+        <button class="btn btn-danger btn-sm" onclick="confirmReset()">Reset</button>
+      </div>
+      <div class="settings-item">
+        <div><div class="si-label">Export Backup</div><div class="si-desc">Download projects as JSON file</div></div>
+        <button class="btn btn-ghost btn-sm" onclick="exportData()"><i class="bi bi-download"></i> Export</button>
+      </div>
+    </div>
+    <div class="card" style="background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.2);">
+      <p style="font-size:.8rem;color:var(--mu);line-height:1.6;"><i class="bi bi-shield-lock-fill" style="color:var(--er);"></i> Keep the <code style="color:var(--pr);">admin.html</code> link private. Do not share it with others.</p>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-tab active" id="tab-home" onclick="switchTab('home')"><i class="bi bi-house-fill"></i>Home</button>
+    <button class="nav-tab" id="tab-projects" onclick="switchTab('projects')"><i class="bi bi-grid-3x3-gap-fill"></i>Projects</button>
+    <button class="nav-tab" id="tab-settings" onclick="switchTab('settings')"><i class="bi bi-gear-fill"></i>Settings</button>
+  </div>
+</div>
+
+<!-- ADD/EDIT SHEET -->
+<div class="sheet-overlay" id="projectSheet">
+  <div class="sheet">
+    <div class="sheet-header">
+      <div class="sheet-title" id="sheetTitle">Add New Project</div>
+      <button class="sheet-close" onclick="closeSheet()"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Category *</label>
+      <select class="form-select" id="projCat">
+        <option value="photography">📷 Photography &amp; Editing</option>
+        <option value="websites">🌐 Website / Web App</option>
+        <option value="apps">📱 Android App</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Title (English) *</label>
+      <input type="text" class="form-input" id="projTitleEn" placeholder="e.g. Creative Photography Session">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Title (বাংলা) <span style="text-transform:none;font-weight:400;">optional</span></label>
+      <input type="text" class="form-input" id="projTitleBd" placeholder="বাংলায় টাইটেল">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description (English)</label>
+      <textarea class="form-textarea" id="projDescEn" placeholder="Short description..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description (বাংলা)</label>
+      <textarea class="form-textarea" id="projDescBd" placeholder="বাংলায় বিবরণ (optional)"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Image</label>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" id="imgFile" accept="image/*" onchange="handleFileUpload(this)">
+        <div class="upload-icon"><i class="bi bi-cloud-upload-fill"></i></div>
+        <div class="upload-text">📱 Tap to upload from phone<br><small style="color:var(--mu);">Auto-resized for fast loading</small></div>
+        <div class="img-preview-wrap" id="imgPreview"><img id="imgPreviewImg" src="" alt="Preview"></div>
+      </div>
+      <div class="or-line">OR</div>
+      <input type="text" class="form-input" id="projImgUrl" placeholder="Paste image URL (Facebook, Imgur, etc.)" oninput="previewUrl(this.value)">
+    </div>
+    <div class="form-group">
+      <label class="form-label">External Link <span style="text-transform:none;font-weight:400;">optional</span></label>
+      <input type="url" class="form-input" id="projLink" placeholder="https://facebook.com/... or live site URL">
+    </div>
+    <div class="toggle-row">
+      <div><div class="toggle-lbl">Wide Card</div><div class="toggle-sub">Full-width panoramic display</div></div>
+      <label class="toggle"><input type="checkbox" id="projWide" checked><span class="toggle-sl"></span></label>
+    </div>
+    <hr class="dv">
+    <button class="btn btn-primary" id="saveBtn" onclick="saveProject()"><i class="bi bi-check2-circle"></i> Save Project</button>
+    <button class="btn btn-ghost" onclick="closeSheet()" style="margin-top:.6rem;">Cancel</button>
+  </div>
+</div>
+
+<!-- CHANGE PW SHEET -->
+<div class="sheet-overlay" id="pwSheet">
+  <div class="sheet">
+    <div class="sheet-header">
+      <div class="sheet-title">🔑 Change Password</div>
+      <button class="sheet-close" onclick="closePwSheet()"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="alert alert-danger" id="pwAlert"></div>
+    <div class="alert alert-success" id="pwSuccess"></div>
+    <div class="form-group">
+      <label class="form-label">Current Password</label>
+      <div class="input-wrap"><input type="password" class="form-input pr" id="pwCurrent" placeholder="Current password"><button class="inp-icon" onclick="togglePass('pwCurrent',this)" type="button"><i class="bi bi-eye"></i></button></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">New Password</label>
+      <div class="input-wrap"><input type="password" class="form-input pr" id="pwNew" placeholder="Min 6 characters"><button class="inp-icon" onclick="togglePass('pwNew',this)" type="button"><i class="bi bi-eye"></i></button></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Confirm New Password</label>
+      <input type="password" class="form-input" id="pwConfirm" placeholder="Repeat new password">
+    </div>
+    <button class="btn btn-primary" onclick="changePassword()"><i class="bi bi-shield-check"></i> Update Password</button>
+    <button class="btn btn-ghost" onclick="closePwSheet()" style="margin-top:.6rem;">Cancel</button>
+  </div>
+</div>
+
+<!-- CONFIRM DIALOG -->
+<div id="confirmDialog">
+  <div class="confirm-card">
+    <div class="confirm-icon">⚠️</div>
+    <div class="confirm-title" id="confirmTitle">Are you sure?</div>
+    <div class="confirm-msg" id="confirmMsg">This action cannot be undone.</div>
+    <div class="confirm-btns">
+      <button class="btn btn-ghost" onclick="closeConfirm()">Cancel</button>
+      <button class="btn btn-danger" id="confirmOkBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOCKOUT -->
+<div id="lockout">
+  <div class="lk-icon">🔒</div>
+  <h2>Too Many Attempts</h2>
+  <p>Login is locked. Try again in:</p>
+  <div id="lockTimer">5:00</div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ============================================================
+// CONFIG — Change your password here!
+// ============================================================
+const DEFAULT_PW = "Rayhan@2026";
+const MAX_TRIES = 5;
+const LOCK_MIN = 5;
+const KEYS = { proj:'rayhan_custom_projects', sess:'rayhan_admin_sess', pw:'rayhan_admin_pw', tries:'rayhan_admin_tries', lock:'rayhan_admin_lock' };
+
+// ============================================================
+// DEFAULT DATA
+// ============================================================
+const DEFAULTS = [
+  {id:1,image:"photo_leaves.png",category:"photography",title_en:"Green Foliage Composition",title_bd:"সবুজ পাতার নান্দনিক কোলাজ",desc_en:"A creative grid layout focusing on fresh green textures, shadows, and natural botanical elements.",desc_bd:"সতেজ সবুজ টেক্সচার ও প্রাকৃতিক বোটানিক্যাল উপাদানের উপর ফোকাস করা একটি ক্রিয়েটিভ গ্রিড লেআউট সেশন।",link:"",isWide:true},
+  {id:2,image:"photo_river.png",category:"photography",title_en:"Riverside Horizon & Boats",title_bd:"নদী তীরবর্তী নৌকা ও শান্ত জলরাশি",desc_en:"A serene riverside capture featuring traditional wooden boats, cloudy sky reflections, and peaceful waters.",desc_bd:"ঐতিহ্যবাহী কাঠের নৌকা ও মেঘলা আকাশের প্রতিচ্ছবি নিয়ে একটি মনোরম নদী সেশন।",link:"",isWide:true},
+  {id:3,image:"photo_33.png",category:"photography",title_en:"Creative Photography Session",title_bd:"ক্রিয়েটিভ ফটোগ্রাফি সেশন",desc_en:"A professional photography session showcasing creative composition, lighting, and artistic visual storytelling.",desc_bd:"পেশাদার ক্রিয়েটিভ ফেটোগ্রাফি সেশন — অপূর্ব কম্পোজিশন, আলোক ও দৃশ্যমান গল্পের শিল্প।",link:"https://www.facebook.com/share/p/19Eo5QJKHS/",isWide:true},
+  {id:4,image:"tt.png.png",category:"photography",title_en:"Photography & Editing Work",title_bd:"ফটোগ্রাফি ও এডিটিং কাজ",desc_en:"A stunning photography and editing showcase featuring expert color grading, skin retouching, and premium visual composition.",desc_bd:"দক্ষ কালার গ্রেডিং, স্কিন রিটাচিং ও প্রিমিয়াম ভিজুয়াল কম্পোজিশন সহ অসাধারণ ফটোগ্রাফি শোকেস।",link:"",isWide:true},
+  {id:5,image:"proj_bloodfinder.png",category:"websites",title_en:"Blood Finder — Donor Search",title_bd:"ব্লাড ফাইন্ডার — রক্তদাতা খোঁজার প্ল্যাটফর্ম",desc_en:"A full-stack web app to search blood donors by blood group & location across Bangladesh.",desc_bd:"বাংলাদেশ জুড়ে রক্তের গ্রুপ ও লোকেশন অনুযায়ী রক্তদাতা খোঁজার ফুল-স্ট্যাক ওয়েব অ্যাপ।",link:"https://blood-finder-mu.vercel.app/",isWide:true},
+  {id:6,image:"proj_rxzai.png",category:"websites",title_en:"RXZ.Ai — AI Chat Platform",title_bd:"RXZ.Ai চ্যাট — AI চ্যাট প্ল্যাটফর্ম",desc_en:"A premium AI chat interface with glassmorphism design, multi-model AI, and image generation.",desc_bd:"গ্লাসমরফিজম ডিজাইনে তৈরি প্রিমিয়াম AI চ্যাট ইন্টারফেস।",link:"https://patoyari-gpt.vercel.app/",isWide:true},
+  {id:7,image:"proj_7up.png",category:"websites",title_en:"7UP — Brand Landing Page",title_bd:"7UP — ব্র্যান্ড ল্যান্ডিং পেজ",desc_en:"A vibrant animated brand landing page for 7UP with modern glassmorphism design.",desc_bd:"7UP-এর জন্য প্রাণবন্ত অ্যানিমেটেড ব্র্যান্ড ল্যান্ডিং পেজ।",link:"https://7up-hwnr.vercel.app/",isWide:true},
+  {id:8,image:"proj_oscar.png",category:"websites",title_en:"Oscar Panel — Admin Dashboard",title_bd:"অস্কার প্যানেল — সিকিউর অ্যাডমিন ড্যাশবোর্ড",desc_en:"A premium bilingual admin staging panel with CAPTCHA security and real-time analytics.",desc_bd:"প্রিমিয়াম বাইলিঙ্গুয়াল অ্যাডমিন স্ট্যাজিং প্যানেল।",link:"",isWide:true},
+  {id:9,image:"proj_crypto.png",category:"websites",title_en:"Crypto Analysis Dashboard",title_bd:"ক্রিপ্টো অ্যানালাইসিস ড্যাশবোর্ড",desc_en:"Real-time crypto market tracker showing live prices and candlestick charts.",desc_bd:"রিয়েল-টাইম ক্রিপ্টো মার্কেট ট্র্যাকার।",link:"",isWide:true},
+  {id:10,image:"proj_minigames2.png",category:"websites",title_en:"Mini Games Collection",title_bd:"মিনি গেমস কালেকশন",desc_en:"A browser-based game collection featuring Snake, Tic-Tac-Toe, Memory Cards, and 2048.",desc_bd:"ব্রাউজার-বেসড মিনি গেম কালেকশন।",link:"",isWide:true},
+  {id:11,image:"web_dashboard.png",category:"websites",title_en:"Bilingual Staging Portal",title_bd:"বাইলিঙ্গুয়াল স্ট্যাজিং পোর্টাল",desc_en:"A premium staging console for US profiles with advanced state and DOB filtering.",desc_bd:"উন্নত ফিল্টারিং সুবিধাসহ লোকাল স্ট্যাজিং রেকর্ড কনসোল।",link:"",isWide:false},
+  {id:12,image:"crypto_invoice.png",category:"websites",title_en:"Blockchain Deposit Portal",title_bd:"ব্লকচেন ডিপজিট পোর্টাল",desc_en:"Multi-coin cryptopay invoicing page with live currency conversion.",desc_bd:"লাইভ কারেন্সি কনভার্সনসহ মাল্টি-কয়েন ক্রিপ্টোপে ইনভয়েস পেজ।",link:"",isWide:false},
+  {id:13,image:"proj_photoeditor.png",category:"apps",title_en:"Photo Editor & Camera App",title_bd:"ফটো এডিটর ও ক্যামেরা অ্যাপ",desc_en:"Android app with custom camera, real-time filters, brightness/saturation sliders, and one-tap export.",desc_bd:"কাস্টম ক্যামেরা, রিয়েল-টাইম ফিল্টার, ক্রপ টুল সহ অ্যান্ড্রয়েড অ্যাপ।",link:"",isWide:false},
+  {id:14,image:"app_bloodfinder.png",category:"apps",title_en:"Blood Finder — Android App",title_bd:"ব্লাড ফাইন্ডার — অ্যান্ড্রয়েড অ্যাপ",desc_en:"Native Android companion app for Blood Finder platform with emergency alerts.",desc_bd:"ব্লাড ফাইন্ডার প্ল্যাটফর্মের নেটিভ অ্যান্ড্রয়েড অ্যাপ।",link:"",isWide:false},
+  {id:15,image:"app_ecommerce.png",category:"apps",title_en:"E-Commerce Android App",title_bd:"ই-কমার্স অ্যান্ড্রয়েড অ্যাপ",desc_en:"Full-featured e-commerce app with product browsing, cart, USDT payment, and order tracking.",desc_bd:"প্রোডাক্ট ব্রাউজিং, কার্ট, USDT পেমেন্ট গেটওয়ে, অর্ডার ট্র্যাকিংসহ ই-কমার্স অ্যাপ।",link:"",isWide:false},
+  {id:16,image:"mobile_app.png",category:"apps",title_en:"Secure Login Authenticator",title_bd:"সিকিউর লগইন অথেন্টিকেটর",desc_en:"Android credentials check app with built-in captcha and local session encryption.",desc_bd:"বিল্ট-ইন ক্যাপচা ভ্যালিডেশন ও সেশন এনক্রিপশনসহ অ্যান্ড্রয়েড মোবাইল অ্যাপ।",link:"",isWide:false}
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let projects=[], curFilter='all', editingId=null, b64Img=null;
+
+// ============================================================
+// INIT
+// ============================================================
+window.onload=function(){
+  if(sessionStorage.getItem(KEYS.sess)==='ok') showDashboard();
+  checkLockout();
+  document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+};
+
+// ============================================================
+// AUTH
+// ============================================================
+function getPw(){ return localStorage.getItem(KEYS.pw)||DEFAULT_PW; }
+function togglePass(id,btn){ const i=document.getElementById(id); const p=i.type==='password'; i.type=p?'text':'password'; btn.innerHTML='<i class="bi bi-eye'+(p?'-slash':'')+'"></i>'; }
+
+function checkLockout(){
+  const until=parseInt(localStorage.getItem(KEYS.lock)||'0');
+  if(until&&Date.now()<until) runLockTimer(until);
+}
+function runLockTimer(until){
+  const el=document.getElementById('lockout'); el.classList.add('show');
+  const iv=setInterval(()=>{
+    const rem=Math.max(0,until-Date.now());
+    const m=Math.floor(rem/60000), s=Math.floor((rem%60000)/1000);
+    document.getElementById('lockTimer').textContent=m+':'+(s<10?'0':'')+s;
+    if(rem<=0){ clearInterval(iv); el.classList.remove('show'); localStorage.removeItem(KEYS.tries); localStorage.removeItem(KEYS.lock); }
+  },500);
+}
+function doLogin(){
+  const pw=document.getElementById('loginPass').value;
+  const al=document.getElementById('loginAlert');
+  if(!pw){ showAl(al,'Please enter your password.'); return; }
+  if(pw===getPw()){
+    localStorage.removeItem(KEYS.tries); localStorage.removeItem(KEYS.lock);
+    sessionStorage.setItem(KEYS.sess,'ok');
+    showDashboard();
+  } else {
+    let tries=parseInt(localStorage.getItem(KEYS.tries)||'0')+1;
+    localStorage.setItem(KEYS.tries,tries);
+    const left=MAX_TRIES-tries;
+    if(tries>=MAX_TRIES){
+      const until=Date.now()+LOCK_MIN*60*1000;
+      localStorage.setItem(KEYS.lock,until);
+      runLockTimer(until);
+    } else {
+      showAl(al,'Wrong password! '+left+' attempt'+(left===1?'':'s')+' remaining.');
+      document.getElementById('loginPass').value='';
+      document.getElementById('loginPass').focus();
+    }
+  }
+}
+function doLogout(){
+  sessionStorage.removeItem(KEYS.sess);
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginAlert').style.display='none';
+}
+function showDashboard(){
+  document.getElementById('loginPage').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  loadProjects(); updateStats(); renderProjects();
+  document.getElementById('sessionInfo').textContent='Active since '+new Date().toLocaleTimeString();
+}
+
+// ============================================================
+// PROJECTS
+// ============================================================
+function loadProjects(){
+  const s=localStorage.getItem(KEYS.proj);
+  projects=s?JSON.parse(s):JSON.parse(JSON.stringify(DEFAULTS));
+}
+function saveProjects(){ localStorage.setItem(KEYS.proj,JSON.stringify(projects)); }
+function updateStats(){
+  document.getElementById('statTotal').textContent=projects.length;
+  document.getElementById('statPhoto').textContent=projects.filter(p=>p.category==='photography').length;
+  document.getElementById('statApps').textContent=projects.filter(p=>p.category==='apps').length;
+}
+function catLabel(c){ return c==='photography'?'📷 Photography':c==='websites'?'🌐 Website':'📱 App'; }
+
+function filterProjects(cat){
+  curFilter=cat;
+  ['all','photography','websites','apps'].forEach(f=>{
+    const b=document.getElementById('ft-'+f);
+    if(b) b.className='btn btn-sm '+(f===cat?'btn-primary':'btn-ghost');
+  });
+  renderProjects();
+}
+
+function renderProjects(){
+  const list=document.getElementById('projectsList');
+  const items=curFilter==='all'?projects:projects.filter(p=>p.category===curFilter);
+  if(!items.length){ list.innerHTML='<div class="empty"><i class="bi bi-inbox"></i><p>No projects found</p></div>'; return; }
+  list.innerHTML=items.map(p=>{
+    const src=p.imageData||(p.image&&!p.image.startsWith('http')?p.image:p.image)||'';
+    const thumb=src?`<div class="proj-thumb"><img src="${p.imageData||p.image}" alt="" onerror="this.parentElement.innerHTML='<i class=\\'bi bi-image\\'></i>'"></div>`
+                   :`<div class="proj-thumb"><i class="bi bi-image"></i></div>`;
+    return `<div class="card"><div class="proj-card">${thumb}<div class="proj-info">
+      <div class="proj-title">${p.title_en}</div>
+      <div class="proj-meta"><span class="badge badge-${p.category}">${catLabel(p.category)}</span>${p.link?'<span style="color:var(--ok);font-size:.7rem;margin-left:.3rem;"><i class="bi bi-link-45deg"></i>Link</span>':''}</div>
+      <div class="proj-actions">
+        <button class="btn btn-ghost btn-sm" onclick="openEdit(${p.id})"><i class="bi bi-pencil-fill"></i> Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDel(${p.id})"><i class="bi bi-trash-fill"></i></button>
+        ${p.link?`<button class="btn btn-success btn-sm" onclick="window.open('${p.link}','_blank')"><i class="bi bi-box-arrow-up-right"></i></button>`:''}
+      </div></div></div></div>`;
+  }).join('');
+}
+
+// ============================================================
+// ADD / EDIT
+// ============================================================
+function resetForm(){
+  editingId=null; b64Img=null;
+  ['projTitleEn','projTitleBd','projDescEn','projDescBd','projLink'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('projImgUrl').value='';
+  document.getElementById('projCat').value='photography';
+  document.getElementById('projWide').checked=true;
+  document.getElementById('imgFile').value='';
+  document.getElementById('imgPreview').style.display='none';
+  document.getElementById('imgPreviewImg').src='';
+}
+function openAddProject(){
+  resetForm();
+  document.getElementById('sheetTitle').textContent='Add New Project';
+  document.getElementById('saveBtn').innerHTML='<i class="bi bi-check2-circle"></i> Save Project';
+  document.getElementById('projectSheet').classList.add('show');
+  setTimeout(()=>document.getElementById('projTitleEn').focus(),400);
+}
+function openEdit(id){
+  resetForm();
+  const p=projects.find(x=>x.id===id); if(!p) return;
+  editingId=id; b64Img=p.imageData||null;
+  document.getElementById('sheetTitle').textContent='Edit Project';
+  document.getElementById('saveBtn').innerHTML='<i class="bi bi-check2-circle"></i> Update Project';
+  document.getElementById('projCat').value=p.category;
+  document.getElementById('projTitleEn').value=p.title_en;
+  document.getElementById('projTitleBd').value=p.title_bd||'';
+  document.getElementById('projDescEn').value=p.desc_en||'';
+  document.getElementById('projDescBd').value=p.desc_bd||'';
+  document.getElementById('projLink').value=p.link||'';
+  document.getElementById('projWide').checked=p.isWide!==false;
+  const imgSrc=p.imageData||p.image||'';
+  if(imgSrc){ document.getElementById('projImgUrl').value=p.image&&p.image.startsWith('http')?p.image:''; document.getElementById('imgPreviewImg').src=imgSrc; document.getElementById('imgPreview').style.display='block'; }
+  document.getElementById('projectSheet').classList.add('show');
+}
+function closeSheet(){ document.getElementById('projectSheet').classList.remove('show'); }
+
+function saveProject(){
+  const title=document.getElementById('projTitleEn').value.trim();
+  if(!title){ toast('Title (English) is required!',true); return; }
+  const imgUrl=document.getElementById('projImgUrl').value.trim();
+  const p={
+    id:editingId||Date.now(),
+    category:document.getElementById('projCat').value,
+    title_en:title,
+    title_bd:document.getElementById('projTitleBd').value.trim(),
+    desc_en:document.getElementById('projDescEn').value.trim(),
+    desc_bd:document.getElementById('projDescBd').value.trim(),
+    link:document.getElementById('projLink').value.trim(),
+    isWide:document.getElementById('projWide').checked
+  };
+  if(b64Img){ p.imageData=b64Img; p.image='uploaded_'+p.id; }
+  else if(imgUrl){ p.image=imgUrl; p.imageData=null; }
+  else if(editingId){ const ex=projects.find(x=>x.id===editingId); p.image=ex?ex.image:''; p.imageData=ex?ex.imageData:null; }
+  else { p.image=''; p.imageData=null; }
+  if(editingId){ const i=projects.findIndex(x=>x.id===editingId); if(i!==-1) projects[i]=p; }
+  else projects.push(p);
+  saveProjects(); updateStats(); renderProjects(); closeSheet();
+  toast(editingId?'Project updated! ✅':'Project added! ✅');
+  editingId=null; b64Img=null;
+}
+
+// ============================================================
+// IMAGE
+// ============================================================
+function handleFileUpload(input){
+  const f=input.files[0]; if(!f) return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const img=new Image();
+    img.onload=function(){
+      const canvas=document.createElement('canvas');
+      const MAX=800; let w=img.width,h=img.height;
+      if(w>h){ if(w>MAX){h=h*MAX/w;w=MAX;} } else { if(h>MAX){w=w*MAX/h;h=MAX;} }
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      b64Img=canvas.toDataURL('image/jpeg',.82);
+      document.getElementById('imgPreviewImg').src=b64Img;
+      document.getElementById('imgPreview').style.display='block';
+      document.getElementById('projImgUrl').value='';
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(f);
+}
+function previewUrl(url){
+  if(url.startsWith('http')){
+    document.getElementById('imgPreviewImg').src=url;
+    document.getElementById('imgPreview').style.display='block';
+    b64Img=null;
+  }
+}
+
+// ============================================================
+// DELETE / RESET
+// ============================================================
+function confirmDel(id){
+  const p=projects.find(x=>x.id===id); if(!p) return;
+  document.getElementById('confirmTitle').textContent='Delete Project?';
+  document.getElementById('confirmMsg').textContent='"'+p.title_en+'" will be permanently removed.';
+  document.getElementById('confirmOkBtn').textContent='Delete';
+  document.getElementById('confirmOkBtn').onclick=()=>{ projects=projects.filter(x=>x.id!==id); saveProjects(); updateStats(); renderProjects(); closeConfirm(); toast('Deleted.'); };
+  document.getElementById('confirmDialog').classList.add('show');
+}
+function confirmReset(){
+  document.getElementById('confirmTitle').textContent='Reset All Projects?';
+  document.getElementById('confirmMsg').textContent='This will remove all custom projects and restore the original defaults.';
+  document.getElementById('confirmOkBtn').textContent='Reset';
+  document.getElementById('confirmOkBtn').onclick=()=>{ localStorage.removeItem(KEYS.proj); loadProjects(); updateStats(); renderProjects(); closeConfirm(); toast('Reset to defaults.'); };
+  document.getElementById('confirmDialog').classList.add('show');
+}
+function closeConfirm(){ document.getElementById('confirmDialog').classList.remove('show'); }
+
+// ============================================================
+// PASSWORD CHANGE
+// ============================================================
+function openChangePw(){ document.getElementById('pwSheet').classList.add('show'); ['pwCurrent','pwNew','pwConfirm'].forEach(id=>document.getElementById(id).value=''); document.getElementById('pwAlert').style.display='none'; document.getElementById('pwSuccess').style.display='none'; }
+function closePwSheet(){ document.getElementById('pwSheet').classList.remove('show'); }
+function changePassword(){
+  const cur=document.getElementById('pwCurrent').value, nw=document.getElementById('pwNew').value, conf=document.getElementById('pwConfirm').value;
+  const al=document.getElementById('pwAlert'), ok=document.getElementById('pwSuccess');
+  al.style.display='none'; ok.style.display='none';
+  if(cur!==getPw()){ showAl(al,'Current password is incorrect.'); return; }
+  if(nw.length<6){ showAl(al,'Password must be at least 6 characters.'); return; }
+  if(nw!==conf){ showAl(al,'Passwords do not match.'); return; }
+  localStorage.setItem(KEYS.pw,nw);
+  showAl(ok,'✅ Password updated successfully!');
+  ['pwCurrent','pwNew','pwConfirm'].forEach(id=>document.getElementById(id).value='');
+  setTimeout(closePwSheet,1600);
+}
+
+// ============================================================
+// EXPORT
+// ============================================================
+function exportData(){
+  const blob=new Blob([JSON.stringify(projects,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob), a=document.createElement('a');
+  a.href=url; a.download='rayhan_projects_'+new Date().toISOString().slice(0,10)+'.json';
+  a.click(); URL.revokeObjectURL(url); toast('Backup downloaded!');
+}
+
+// ============================================================
+// UI HELPERS
+// ============================================================
+function switchTab(t){
+  ['home','projects','settings'].forEach(x=>{ document.getElementById('panel-'+x).classList.toggle('active',x===t); document.getElementById('tab-'+x).classList.toggle('active',x===t); });
+}
+function showAl(el,msg){ el.textContent=msg; el.style.display='block'; }
+let _tt; function toast(msg,err=false){ const el=document.getElementById('toast'); el.textContent=msg; el.className='show'+(err?' err':''); clearTimeout(_tt); _tt=setTimeout(()=>el.className='',2800); }
+
+// Close on overlay click
+['projectSheet','pwSheet'].forEach(id=>{ document.getElementById(id).addEventListener('click',function(e){ if(e.target===this) this.classList.remove('show'); }); });
+document.getElementById('confirmDialog').addEventListener('click',function(e){ if(e.target===this) closeConfirm(); });
+</script>
+</body>
+</html>
